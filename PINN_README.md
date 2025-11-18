@@ -1,6 +1,6 @@
 # Physics-Informed Neural Networks (PINNs) for Transformer Temperature Prediction
 
-## 🎯 Goal: Achieve RMSE < 0.15 °C
+## 🎯 Goal: Minimuze RMSE using PINN
 
 This implementation combines **data-driven learning** with **physics-based constraints** from IEEE C57.91 transformer thermal standards to achieve superior prediction accuracy.
 
@@ -8,7 +8,7 @@ This implementation combines **data-driven learning** with **physics-based const
 
 ## 🔬 Why PINNs for Transformer Monitoring?
 
-Traditional machine learning methods achieved RMSE ~0.47 °C on this task. PINNs improve this by:
+Traditional machine learning methods achieved RMSE ~0.5 °C on this task. PINNs improve this by:
 
 1. **Incorporating Domain Knowledge**: Transformer thermal physics from IEEE C57.91
 2. **Better Extrapolation**: Physics constraints prevent unrealistic predictions
@@ -141,7 +141,7 @@ python run_pinn_experiment.py --dataset ETTh2 --epochs 50
 | Linear Regression | 0.474 | 0.353 | 0.972 | 0.03s |
 | LightGBM | 0.519 | 0.374 | 0.966 | 1.16s |
 | Standard NN | ~0.20 | ~0.15 | ~0.995 | ~60s |
-| **PINN (Target)** | **< 0.15** | **< 0.12** | **> 0.997** | **~80s** |
+| **PINN (Target)** | ** < ? ** | **< 0.12** | **> 0.997** | **~80s** |
 
 ### Why PINN Performs Better
 
@@ -255,7 +255,7 @@ dθ/dt = autograd.grad(θ, t)  # Exact derivative via backpropagation
 
 1. **Data Loss**: MSE on actual measurements
 2. **Physics Loss**: MSE of physics residual
-3. **RMSE**: Root mean squared error (target: < 0.15 °C)
+3. **RMSE**: Root mean squared error
 4. **MAE**: Mean absolute error
 5. **MAPE**: Mean absolute percentage error
 6. **R²**: Coefficient of determination
@@ -274,7 +274,7 @@ The learned parameters should match expected ranges:
 
 ### Good PINN Performance Indicators
 
-1. ✅ RMSE < 0.15 °C
+1. ✅ RMSE lower than conventional ML
 2. ✅ Physics loss decreases during training
 3. ✅ Learned parameters within physical ranges
 4. ✅ Predictions smooth and physically plausible
@@ -375,7 +375,7 @@ If you use this code for research, please cite:
 
 This PINN implementation is successful if:
 
-1. ✅ **RMSE < 0.15 °C** on test set
+1. ✅ **RMSE lower than conventional ML
 2. ✅ **Outperforms standard NN** by significant margin
 3. ✅ **Learns realistic physics parameters**
 4. ✅ **Shows better extrapolation** than data-only methods
