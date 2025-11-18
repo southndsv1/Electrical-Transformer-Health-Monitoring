@@ -272,12 +272,25 @@ class XGBoostModel(BaseClassicalModel):
 
         if X_val is not None and y_val is not None:
             # Use early stopping with validation set
-            self.model.fit(
-                X_train, y_train,
-                eval_set=[(X_val, y_val)],
-                early_stopping_rounds=50,
-                verbose=False
-            )
+            try:
+                # Try new XGBoost API (>=2.0)
+                self.model.fit(
+                    X_train, y_train,
+                    eval_set=[(X_val, y_val)],
+                    verbose=False
+                )
+            except TypeError:
+                # Fallback for older XGBoost versions
+                try:
+                    self.model.set_params(early_stopping_rounds=50)
+                    self.model.fit(
+                        X_train, y_train,
+                        eval_set=[(X_val, y_val)],
+                        verbose=False
+                    )
+                except:
+                    # Just fit without early stopping
+                    self.model.fit(X_train, y_train)
         else:
             self.model.fit(X_train, y_train)
 
