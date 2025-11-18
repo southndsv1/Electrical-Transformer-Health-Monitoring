@@ -45,10 +45,8 @@ Power transformers are crucial components in electrical grids, and unexpected fa
 6. **Visualization & Analysis**:
    - Uses Matplotlib to plot the training and validation metrics over epochs.
    - Illustrates time-series line graphs comparing the true temperatures and model forecasts.
-     ![Unknown-2](https://github.com/user-attachments/assets/406b64a1-7d27-4e61-85c9-2364090754dc)
    - Analyzes residual patterns to identify possible systematic errors.
    - Also loads an unseen data file ETTh1.csv and predicts the OT for a randomly selected or user provided date.
-   ![Unknown](https://github.com/user-attachments/assets/5b05f012-2f4c-40eb-b6a6-2e38b0a69f86)
 
 
 ## Project Structure
